@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f5f7fa; margin: 0; padding: 0; }
-        .container { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 32px; }
-        h1 { color: #2a5298; text-align: center; margin-bottom: 32px; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
-        th, td { padding: 12px 8px; border-bottom: 1px solid #e0e0e0; text-align: left; }
-        th { background: #2a5298; color: #fff; }
-        tr:last-child td { border-bottom: none; }
-        tr:hover { background: #dce4f1; }
-    </style>
-</head>
-<body>
+@extends('layout.app')
+@section('content')
+
     <div class="container">
         <h1>Book List</h1>
-        <table>
+        <table >
             <thead>
                 <tr>
                     <th>ID</th>
@@ -45,5 +30,4 @@
             </tbody>
         </table>
     </div>
-</body>
-</html>
+@endsection

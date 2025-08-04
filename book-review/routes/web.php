@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 use App\Models\Book;
+use App\Models\NewBooks;
    $books = [
         new Book(1, 'To Kill a Mockingbird', 'Harper Lee', 1960, 'Classic'),
         new Book(2, '1984', 'George Orwell', 1949, 'Dystopian'),
@@ -16,18 +18,39 @@ use App\Models\Book;
         new Book(10, 'Brave New World', 'Aldous Huxley', 1932, 'Dystopian'),
     ];
 
-Route::get('/', function () use ($books) {
+
+Route::get('/', function () {
+    return redirect()->route('books.index');
+});
+
+Route::get('/books', function ()  {
+    $books = NewBooks::latest()->get();
     return view('index', compact('books'));
-})->name('book.index');
+})->name('books.index');
 
-
-Route::get('/book/{id}', function ($id) use ($books) {
-    $book = collect($books)->firstWhere('id', (int)$id);
+Route::view('/book/create', 'create')->name('book.create');
+Route::get('/book/{id}', function ($id) {
+    $book = NewBooks::find($id);
     if (!$book) {
         abort(404);
     }
     return view('book', compact('book'));
 })->name('book.show');
+
+Route::Post('/books', function (Request $request) {
+    // dd($request->all());
+    $data = request()->validate([
+        'title' => 'required|string|max:255',
+        'author' => 'required|string|max:255',
+        'year' => 'required|integer|min:1000|max:9999',
+        'genre' => 'required|string|max:255',
+    ]);
+
+    $book = NewBooks::create($data);
+    return redirect()->route('book.show', $book);
+})->name('book.store');
+
+
 
 // Route::fallback(function () {
 //     return response()->view('errors.404', [], 404);
