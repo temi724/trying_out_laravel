@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('/books', function ()  {
-    $books = NewBooks::latest()->get();
+    $books = NewBooks::latest()->paginate(10);
     return view('index', compact('books'));
 })->name('books.index');
 

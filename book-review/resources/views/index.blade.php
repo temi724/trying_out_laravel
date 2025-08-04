@@ -61,5 +61,7 @@
                 @endforeach
             </tbody>
         </table>
+        <p>{{ $books->total() }} book(s) found.</p>
+        {{ $books->links() }}
     </div>
 @endsection
