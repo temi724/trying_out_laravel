@@ -47,6 +47,16 @@
                         <td>{{ $book->author }}</td>
                         <td>{{ $book->year }}</td>
                         <td>{{ $book->genre }}</td>
+                        <td>
+                            <a href="{{ route('book.edit', ['id' => $book->id]) }}" style="background:#2a5298;color:#fff;padding:6px 14px;border-radius:5px;text-decoration:none;font-weight:500;">Edit</a>
+                        </td>
+                        <td>
+                            <form action="{{ route('book.delete', ['id' => $book->id]) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="background:#c0392b;color:#fff;padding:6px 14px;border:none;border-radius:5px;font-weight:500;cursor:pointer;">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

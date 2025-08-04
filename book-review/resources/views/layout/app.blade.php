@@ -18,6 +18,13 @@
             </div>
         </div>
     </nav>
+    <div class="">
+        @if(session()->has('success'))
+            <div style="background: #dff0d8; color: #3c763d; padding: 10px; border-radius: 5px; margin: 20px auto; max-width: 600px; text-align: center;">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
     <div>@yield('content')</div>
 
 </body>

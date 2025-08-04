@@ -10,6 +10,11 @@
         .label { font-weight: bold; color: #2a5298; }
         .back-link { display: block; margin-top: 32px; text-align: center; color: #2a5298; text-decoration: none; font-weight: bold; }
         .back-link:hover { text-decoration: underline; }
+        .alert-danger{
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
 
 
     </style>
