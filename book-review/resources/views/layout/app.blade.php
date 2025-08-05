@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
      @vite('resources/css/app.css')
          {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
 
@@ -23,9 +24,12 @@
     </nav>
     <div class="">
         @if(session()->has('success'))
-            <div style="background: #dff0d8; color: #3c763d; padding: 10px; border-radius: 5px; margin: 20px auto; max-width: 600px; text-align: center;">
+            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 2000)"
+                class="bg-green-100 text-green-800 px-4 py-3 rounded shadow-md mx-auto my-5 max-w-xl text-center font-semibold"
+                style="margin: 20px auto;">
                 {{ session('success') }}
             </div>
+
         @endif
     </div>
     <div>@yield('content')</div>

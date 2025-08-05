@@ -46,7 +46,7 @@ Route::get('/book/{id}', function ($id) {
 // Save new book in DB...
 Route::post('/books', function (BookRequest $request) {
     $book = NewBooks::create($request->validated());
-    return redirect()->route('book.show', $book)->with('success', 'Book created successfully!');
+    return redirect()->route('books.index', $book)->with('success', 'Book created successfully!');
 })->name('book.store');
 
 // Get book by ID and show in view
