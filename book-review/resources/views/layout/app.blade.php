@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     @vite('resources/css/app.css')
+         {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
+
     <title>@yield('title')</title>
     @yield('styles')
 </head>
 <body>
-    <nav style="background: #2a5298; padding: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+    <nav class="bg-[#2a5298]" style="padding: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
         <div style="max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
             <a href="{{ route('books.index') }}" style="color: #fff; font-size: 1.3rem; font-weight: bold; text-decoration: none;">Book Review</a>
             <div>

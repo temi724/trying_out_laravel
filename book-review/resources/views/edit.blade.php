@@ -1,47 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Book</title>
+@extends('layout.app')
+
+@section('styles')
     <style>
-        body { font-family: Arial, sans-serif; background: #f5f7fa; margin: 0; padding: 0; }
-        .container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 32px; }
-        h1 { color: #2a5298; text-align: center; margin-bottom: 32px; }
-        form { display: flex; flex-direction: column; gap: 18px; }
-        label { font-weight: bold; color: #2a5298; }
-        input, select { padding: 8px; border-radius: 6px; border: 1px solid #ccc; }
-        button { background: #2a5298; color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        button:hover { background: #1e3c72; }
-        .back-link { display: block; margin-top: 32px; text-align: center; color: #2a5298; text-decoration: none; font-weight: bold; }
-        .back-link:hover { text-decoration: underline; }
+        /* Additional custom styles if needed */
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Edit Book</h1>
-        <form method="POST" action="{{ route('book.update', $book->id) }}">
+@endsection
+
+@section('content')
+    <div class="container mx-auto max-w-xl bg-white rounded-lg shadow-lg p-8 mt-8">
+        <h1 class="text-3xl font-bold text-center text-blue-800 mb-8">Edit Book</h1>
+        <form method="POST" action="{{ route('book.update', $book->id) }}" class="space-y-6">
             @csrf
             @method('PUT')
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="{{ old('title', $book->title) }}" required>
-
-            <label for="author">Author</label>
-            <input type="text" id="author" name="author" value="{{ old('author', $book->author) }}" required>
-
-            <label for="year">Year</label>
-            <input type="number" id="year" name="year" value="{{ old('year', $book->year) }}" min="1000" max="9999" required>
-
-            <label for="genre">Genre</label>
-            <select id="genre" name="genre" required>
-                @foreach(['Classic', 'Dystopian', 'Romance', 'Fantasy', 'Adventure', 'Historical'] as $genre)
-                    <option value="{{ $genre }}" @if(old('genre', $book->genre) == $genre) selected @endif>{{ $genre }}</option>
-                @endforeach
-            </select>
-
-            <button type="submit">Update Book</button>
+            <div>
+                <label for="title" class="block text-blue-800 font-semibold mb-2">Title</label>
+                <input type="text" id="title" name="title" value="{{ old('title', $book->title) }}" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
+                @error('title')
+                    <div class="text-red-600 font-semibold mt-2">{{ $message }}</div>
+                @enderror
+            </div>
+            <div>
+                <label for="author" class="block text-blue-800 font-semibold mb-2">Author</label>
+                <input type="text" id="author" name="author" value="{{ old('author', $book->author) }}" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
+                @error('author')
+                    <div class="text-red-600 font-semibold mt-2">{{ $message }}</div>
+                @enderror
+            </div>
+            <div>
+                <label for="year" class="block text-blue-800 font-semibold mb-2">Year</label>
+                <input type="number" id="year" name="year" value="{{ old('year', $book->year) }}" min="1000" max="9999" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
+                @error('year')
+                    <div class="text-red-600 font-semibold mt-2">{{ $message }}</div>
+                @enderror
+            </div>
+            <div>
+                <label for="genre" class="block text-blue-800 font-semibold mb-2">Genre</label>
+                <select id="genre" name="genre" required class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    @foreach(['Classic', 'Dystopian', 'Romance', 'Fantasy', 'Adventure', 'Historical'] as $genre)
+                        <option value="{{ $genre }}" @if(old('genre', $book->genre) == $genre) selected @endif>{{ $genre }}</option>
+                    @endforeach
+                </select>
+                @error('genre')
+                    <div class="text-red-600 font-semibold mt-2">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="w-full bg-blue-800 text-white py-3 rounded font-bold hover:bg-blue-900 transition">Update Book</button>
         </form>
-        <a href="{{ route('books.index') }}" class="back-link">&larr; Back to Book List</a>
+        <a href="{{ route('books.index') }}" class="block text-blue-800 font-bold mt-8 text-center hover:underline">&larr; Back to Book List</a>
     </div>
-</body>
-</html>
+@endsection
