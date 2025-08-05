@@ -27,7 +27,15 @@ Route::get('/', function () {
 });
 
 Route::get('/books', function ()  {
-    $books = NewBooks::latest()->paginate(10);
+    $query = request('search');
+    $books = NewBooks::query();
+    if ($query) {
+        $books->where('title', 'like', "%$query%")
+              ->orWhere('author', 'like', "%$query%")
+              ->orWhere('genre', 'like', "%$query%")
+              ->orWhere('year', 'like', "%$query%");
+    }
+    $books = $books->latest()->paginate(10)->withQueryString();
     return view('index', compact('books'));
 })->name('books.index');
 

@@ -15,6 +15,10 @@
     <div class="flex justify-center items-center min-h-screen bg-gray-50">
         <div class="w-full max-w-5xl p-8 bg-white rounded-lg shadow-xl">
             <h1 class="text-3xl font-bold text-center text-blue-800 mb-8">Book List</h1>
+            <form method="GET" action="{{ route('books.index') }}" class="mb-8 flex justify-center">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search books..." class="w-1/2 px-4 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-300">
+                <button type="submit" class="bg-blue-800 text-white px-4 py-2 rounded-r font-bold hover:bg-blue-900 transition">Search</button>
+            </form>
             <table class="min-w-full border border-gray-300  rounded-lg overflow-hidden">
                 <thead class="bg-blue-800">
                     <tr>
